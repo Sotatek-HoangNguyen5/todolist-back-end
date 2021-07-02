@@ -1,0 +1,35 @@
+version: '3'
+services:
+    mysql:
+        image: mysql:8.0.25
+        container_name: todolist-mysql
+        command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --sql_mode="" --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_ROOT_PASSWORD: '1'
+            MYSQL_DATABASE: todolist
+            MYSQL_USER: 'admin'
+            MYSQL_PASSWORD: '1'
+            LANG: C.UTF-8
+        volumes:
+            #create a file in project folder refer to data folder of mysql container
+            - './docker/.docker/data/db:/var/lib/mysql'
+            - './docker/.docker/mnt:/mnt'
+        ports:
+            # 3306 is defaut port mysql use
+            - 3308:3306
+    
+    app:
+        build: .
+        container_name: todolist-backend
+        user: node
+        depends_on:
+            - mysql
+        ports:
+            - 5000:5000
+            - 3000:3000
+        volumes:
+            #The new volumes key mounts the project directory (current directory)
+            #on the host to /code inside the container, 
+            #allowing you to modify the code on the fly, 
+            #without having to rebuild the image. 
+            - .:/app/todolist
