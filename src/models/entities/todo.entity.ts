@@ -23,6 +23,9 @@ export class TodoEntity extends BaseEntity {
   @Column()
   status: TodoStatus;
 
+  @Column()
+  createAt: Date;
+
   @ManyToOne((type) => UserEntity, (user) => user.todos, { eager: false })
   @JoinColumn()
   user: UserEntity;

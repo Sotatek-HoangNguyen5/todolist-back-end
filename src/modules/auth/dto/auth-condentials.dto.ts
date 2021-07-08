@@ -8,8 +8,8 @@ export class AuthCredentialsDto {
 
   @MaxLength(20, { message: 'Password length must less or equal to 20' })
   @MinLength(8, { message: 'Password length must be more or equal to 8' })
-  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+  /*  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
     message: 'Password too weak',
-  })
+  }) */
   password: string;
 }
