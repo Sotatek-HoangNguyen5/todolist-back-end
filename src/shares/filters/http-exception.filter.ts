@@ -15,10 +15,12 @@ export class HttpExceptionFilter implements ExceptionFilter<HttpException> {
     const status = exception.getStatus();
     const exceptionResponse: any = exception.getResponse();
 
+    const message = exceptionResponse?.message || 'UNKNOWN';
+
     response.status(status).json({
+      error: exceptionResponse.error + ` (${status})`,
       code: exceptionResponse?.code,
-      statusCode: status,
-      message: exceptionResponse?.messae || 'Unknown',
+      message,
       timestamp: new Date().toISOString(),
       path: request.url,
     });

@@ -13,12 +13,6 @@ export class AuthController {
     return this.authService.signup(authCredentialsDto);
   }
 
-  // @Post('/signin')
-  // signIn(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto) {
-  //   console.log(authCredentialsDto);
-  //   return 'hello';
-  // }
-
   @Post('/signin')
   signIn(
     @Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto,

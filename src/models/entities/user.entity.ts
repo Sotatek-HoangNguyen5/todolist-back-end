@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import { bcrypt } from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import { TodoEntity } from './todo.entity';
 
 @Entity('user')
@@ -29,7 +29,8 @@ export class UserEntity extends BaseEntity {
   @Column({ select: false })
   confirmPassword: string;
 
-  @Column({ select: false })
+  //@Column({ select: false })
+  @Column()
   salt: string;
 
   @OneToMany((type) => TodoEntity, (todo) => todo.user, { eager: true })
