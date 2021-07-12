@@ -1,0 +1,7 @@
+app:
+  name: APP_NAME
+  port: APP_PORT
+  env: NODE_ENV
+  password_secret: PASSWORD_SECRET
+  salt_round: SALT_ROUND
+  token_expire: TOKEN_EXPIRE
